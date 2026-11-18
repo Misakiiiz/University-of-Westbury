@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ficha – University of Westbury</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#d9d2c4;--paper:#f1ebdd;--ink:#2b2824;--line:#6b655d;--soft:#e6dfcf;--accent:#7a2e2e;--photo:#0c0c0c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1814;--paper:#26231e;--ink:#e8e0d0;--line:#8a8376;--soft:#312d26;--accent:#d08a7a}}
+:root[data-theme="dark"]{--bg:#1a1814;--paper:#26231e;--ink:#e8e0d0;--line:#8a8376;--soft:#312d26;--accent:#d08a7a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Special Elite","Courier New",monospace;font-size:16px;line-height:1.4}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:10px;background:var(--bg);border-bottom:1px solid var(--line)}
+button,.btn{font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:2px solid var(--line);padding:6px 12px;cursor:pointer}
+button:hover,.btn:hover{background:var(--soft)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{display:grid;gap:28px;padding:20px 12px 40px;justify-items:center}
+.sheet{width:100%;max-width:760px;background-color:var(--paper);border:1px solid var(--line);padding:22px;box-shadow:0 2px 0 var(--line),0 10px 24px rgba(0,0,0,.18);
+background-image:radial-gradient(var(--soft) 1px,transparent 1.2px);background-size:7px 7px}
+.head{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start}
+.polaroid{position:relative;background:#f7f5ef;padding:12px 12px 56px;box-shadow:0 3px 8px rgba(0,0,0,.3);width:200px;cursor:pointer;border:0}
+.polaroid .ph{display:block;aspect-ratio:1/1;width:100%;background:var(--photo) center/cover no-repeat;position:relative}
+.polaroid .ph span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#bdb6a8;font-size:13px;padding:10px}
+.polaroid.has .ph span{display:none}
+.polaroid::before{content:"";position:absolute;top:-14px;left:50px;width:18px;height:56px;border:3px solid #9a9a9a;border-radius:10px}
+.title{font-family:"IM Fell English SC","Special Elite",serif;font-weight:400;font-size:clamp(22px,5vw,34px);letter-spacing:.04em;margin:0 0 10px;border-bottom:2px solid var(--line);padding-bottom:6px}
+.row{display:flex;gap:8px;align-items:center;margin:8px 0}
+label,.lb{text-decoration:underline;white-space:nowrap}
+input,select,textarea{font:inherit;color:var(--ink);background:transparent;border:2px solid var(--line);padding:5px 8px;min-width:0;width:100%;border-radius:0}
+select{appearance:none;-webkit-appearance:none;text-align:center;text-align-last:center;padding:5px 2px;cursor:pointer}
+select option{background:var(--paper);color:var(--ink)}
+input:focus,select:focus,textarea:focus{background:var(--soft)}
+.stats{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:14px 0}
+.grp{display:flex;align-items:center;gap:6px}
+.stats select{width:52px}
+.pair{display:flex;align-items:center;gap:4px}
+.pair input{width:52px;text-align:center}
+h2{font-size:18px;font-weight:400;text-decoration:underline;margin:22px 0 8px}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:8px 34px}
+.sk{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.sk .d{display:flex;align-items:center;gap:4px}
+.sk select{width:48px;padding:6px 0}
+.lines{display:grid;gap:8px}
+.lines.two{grid-template-columns:1fr 1fr}
+.lines input{height:44px}
+.note{font-size:13px;opacity:.75;text-align:center;margin:12px}
+@media(max-width:620px){.head{grid-template-columns:1fr}.polaroid{margin:14px auto 0}.skills{grid-template-columns:1fr}.lines.two{grid-template-columns:1fr}}
+@media print{.bar,.note,body::before{display:none}body{background:#fff}main{padding:0;gap:0}.sheet{box-shadow:none;break-after:page;border:0}}
+</style>
+</head>
+<body>
+<div class="bar" role="toolbar" aria-label="Ações da ficha">
+  <button id="exp">Exportar ficha</button>
+  <label class="btn" style="text-decoration:none">Importar ficha<input id="imp" type="file" accept=".json" hidden></label>
+  <button id="prt">Imprimir / PDF</button>
+  <button id="clr">Limpar tudo</button>
+</div>
+<p class="note">Tudo é salvo automaticamente neste navegador. Use “Exportar ficha” para guardar um backup.</p>
+<main>
+
+<section class="sheet" aria-label="Ficha principal">
+  <div class="head">
+    <button type="button" class="polaroid" data-img="foto1" aria-label="Adicionar foto do personagem"><span class="ph"><span>Clique para adicionar uma imagem</span></span></button>
+    <div>
+      <h1 class="title">University of Westbury</h1>
+      <div class="row"><label for="aluno">Aluno:</label><input id="aluno" data-k></div>
+      <div class="row"><label for="player">Player:</label><input id="player" data-k></div>
+      <div class="row"><label for="perfil">Perfil:</label><input id="perfil" data-k></div>
+      <div class="row"><label for="idade">Idade:</label><input id="idade" data-k style="max-width:110px"><label for="nivel" style="margin-left:8px">Nível:</label><input id="nivel" data-k></div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:16px"><label for="curso">Curso:</label><input id="curso" data-k></div>
+  <div class="stats">
+    <div class="grp"><span>PV</span><span class="pair"><input id="pv1" data-k aria-label="PV atual" inputmode="numeric"><b>/</b><input id="pv2" data-k aria-label="PV máximo" inputmode="numeric"></span></div>
+    <div class="grp"><span>PD</span><span class="pair"><input id="pd1" data-k aria-label="PD atual" inputmode="numeric"><b>/</b><input id="pd2" data-k aria-label="PD máximo" inputmode="numeric"></span></div>
+    <div class="grp"><span class="lb">Físico</span><select id="fisico" data-k data-die aria-label="Físico"></select></div>
+    <div class="grp"><span class="lb">Mente</span><select id="mente" data-k data-die aria-label="Mente"></select></div>
+    <div class="grp"><span class="lb">Emoção</span><select id="emocao" data-k data-die aria-label="Emoção"></select></div>
+  </div>
+  <h2>Perícias:</h2>
+  <div class="skills" id="skills"></div>
+</section>
+
+<section class="sheet" aria-label="Habilidades e inventário">
+  <div class="head">
+    <button type="button" class="polaroid" data-img="foto2" aria-label="Adicionar imagem"><span class="ph"><span>Clique para adicionar uma imagem</span></span></button>
+    <div>
+      <h1 class="title">University of Westbury</h1>
+      <h2 style="margin-top:0">Habilidades:</h2>
+      <div class="lines" id="hab-a"></div>
+    </div>
+  </div>
+  <div class="lines" id="hab-b" style="margin-top:8px"></div>
+  <h2>Inventário</h2>
+  <div class="lines two" id="inv"></div>
+</section>
+
+<section class="sheet" aria-label="Aparência e backstory">
+  <div class="head">
+    <button type="button" class="polaroid" data-img="foto3" aria-label="Adicionar imagem"><span class="ph"><span>Clique para adicionar uma imagem</span></span></button>
+    <div>
+      <h1 class="title">University of Westbury</h1>
+      <h2 style="margin-top:0">Aparência:</h2>
+      <div class="lines" id="apa-a"></div>
+    </div>
+  </div>
+  <div class="lines" id="apa-b" style="margin-top:8px"></div>
+  <h2>Backstory:</h2>
+  <div class="lines" id="bk"></div>
+</section>
+
+</main>
+<script>
+(function(){
+var SK=["Acrobacia","Animais","Aptidão","Atletismo","Bruxaria","Crime","Disciplina","Enganação","Furtividade","Intimidar","Intuição","Inspecionar","Luta","Medicina","Metalurgia","Percepção","Persuasão","Pontaria","Sobrevivência","Vigor"];
+var DICE=[4,6,8,10,12],KEY="westbury-ficha-v1",data={},saveFailed=false;
+function opts(s){s.innerHTML='<option value="">–</option>'+DICE.map(function(d){return'<option value="'+d+'">'+d+'</option>'}).join('')}
+function slug(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+var sk=document.getElementById("skills"),els=[];
+SK.forEach(function(n){
+  var id="p-"+slug(n),d=document.createElement("div");d.className="sk";
+  d.innerHTML='<span>'+n+'</span><span class="d"><select id="'+id+'-a" data-k data-die aria-label="'+n+' primeiro dado"></select><b>+</b><select id="'+id+'-b" data-k data-die aria-label="'+n+' segundo dado"></select></span>';
+  els.push(d);
+});
+for(var r=0;r<10;r++){sk.appendChild(els[r]);sk.appendChild(els[r+10])}
+document.querySelectorAll("[data-die]").forEach(opts);
+function lines(id,n,pref,label){var c=document.getElementById(id);for(var i=0;i<n;i++){var t=document.createElement("input");t.id=pref+i;t.setAttribute("data-k","");t.autocomplete="off";t.setAttribute("aria-label",label+" "+(i+1));c.appendChild(t)}}
+lines("hab-a",3,"hab-a","Habilidade");lines("hab-b",5,"hab-b","Habilidade");
+lines("inv",14,"inv","Item");lines("apa-a",3,"apa-a","Aparência");lines("apa-b",5,"apa-b","Aparência");lines("bk",7,"bk","Backstory");
+function grow(){}
+var LINK={fisico:["acrobacia","atletismo","crime","furtividade","luta","pontaria","vigor"],mente:["aptidao","inspecionar","medicina","percepcao","sobrevivencia"],emocao:["animais","disciplina","enganacao","intimidar","intuicao","persuasao"]};
+function syncAttr(id){var l=LINK[id];if(!l)return;var v=document.getElementById(id).value;l.forEach(function(s){var t=document.getElementById("p-"+s+"-b");if(t){t.value=v;data[t.id]=v}})}
+function ids(p,n){var a=[];for(var i=0;i<n;i++)a.push(p+i);return a}
+var chains=[ids("hab-a",3).concat(ids("hab-b",5)),ids("inv",14),ids("apa-a",3).concat(ids("apa-b",5)),ids("bk",7)],chainOf={};
+chains.forEach(function(ch){ch.forEach(function(id){chainOf[id]=ch})});
+function over(e){return e.scrollWidth>e.clientWidth}
+function reflow(el){
+  var ch=chainOf[el.id],i=ch.indexOf(el.id),nx=document.getElementById(ch[i+1]);
+  if(!nx||!over(el))return;
+  var v=el.value,pos=el.selectionStart,cut=v.length,n=0;
+  while(cut>0&&n++<500){el.value=v.slice(0,cut).replace(/\s+$/,"");if(!over(el))break;var sp=v.lastIndexOf(" ",cut-1);cut=sp>0?sp:cut-1}
+  var rest=v.slice(cut),carry=rest.replace(/^\s+/,""),off=pos-cut-(rest.length-carry.length);
+  data[el.id]=el.value;
+  var ex=nx.value;nx.value=carry+(ex?(/\s$/.test(carry)?"":" ")+ex:"");data[nx.id]=nx.value;
+  if(pos>cut){off=Math.max(0,Math.min(off,carry.length));nx.focus();nx.setSelectionRange(off,off)}
+  reflow(nx);
+}
+document.addEventListener("keydown",function(e){
+  var el=e.target,ch=el.id&&chainOf[el.id];if(!ch)return;var i=ch.indexOf(el.id);
+  if(e.key==="Enter"){e.preventDefault();var nx=document.getElementById(ch[i+1]);if(nx){nx.focus();nx.setSelectionRange(0,0)}}
+  else if(e.key==="Backspace"&&el.selectionStart===0&&el.selectionEnd===0&&i>0){e.preventDefault();var p=document.getElementById(ch[i-1]);p.focus();p.setSelectionRange(p.value.length,p.value.length)}
+});
+function load(){try{data=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){data={}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){if(!saveFailed){saveFailed=true;alert("Não foi possível salvar automaticamente (armazenamento cheio ou bloqueado). Use “Exportar ficha” para guardar um backup.")}}}
+function paintImg(k){var b=document.querySelector('[data-img="'+k+'"]');if(!b)return;var ph=b.querySelector(".ph");
+  if(data[k]){ph.style.backgroundImage="url("+data[k]+")";b.classList.add("has")}else{ph.style.backgroundImage="";b.classList.remove("has")}}
+function apply(){
+  document.querySelectorAll("[data-k]").forEach(function(el){el.value=data[el.id]!=null?data[el.id]:"";if(el.tagName==="TEXTAREA")grow(el)});
+  ["foto1","foto2","foto3"].forEach(paintImg);
+}
+document.addEventListener("input",function(e){var el=e.target;if(el.hasAttribute&&el.hasAttribute("data-k")){data[el.id]=el.value;if(chainOf[el.id])reflow(el);syncAttr(el.id);save()}});
+var fi=document.createElement("input");fi.type="file";fi.accept="image/*";var cur=null;
+document.querySelectorAll("[data-img]").forEach(function(b){b.addEventListener("click",function(){
+  var k=b.getAttribute("data-img");
+  if(data[k]&&!confirm("Trocar a imagem atual?"))return;
+  cur=k;fi.value="";fi.click()})});
+fi.addEventListener("change",function(){
+  var f=fi.files&&fi.files[0];if(!f||!cur)return;var k=cur,rd=new FileReader();
+  rd.onload=function(){var im=new Image();im.onload=function(){
+    var m=520,s=Math.min(1,m/Math.max(im.width,im.height)),w=Math.round(im.width*s),h=Math.round(im.height*s);
+    var c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(im,0,0,w,h);
+    data[k]=c.toDataURL("image/jpeg",.82);paintImg(k);save()};
+    im.onerror=function(){alert("Não foi possível ler essa imagem. Tente um arquivo JPG ou PNG.")};im.src=rd.result};
+  rd.readAsDataURL(f)});
+document.getElementById("prt").onclick=function(){window.print()};
+document.getElementById("clr").onclick=function(){if(confirm("Apagar todos os campos e imagens desta ficha?")){data={};try{localStorage.removeItem(KEY)}catch(e){}apply()}};
+document.getElementById("exp").onclick=function(){
+  var nome=(data.aluno||"personagem").replace(/[^\w\-]+/g,"_");
+  var blob=new Blob([JSON.stringify(data)],{type:"application/json"}),a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="ficha-"+nome+".json";document.body.appendChild(a);a.click();a.remove()};
+document.getElementById("imp").addEventListener("change",function(e){
+  var f=e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){try{var o=JSON.parse(r.result);if(typeof o!=="object"||!o)throw 0;data=o;save();apply()}catch(x){alert("Arquivo inválido. Escolha um arquivo exportado por esta ficha.")}};r.readAsText(f);e.target.value=""});
+load();apply();
+})();
+</script>
+</body>
+</html>
